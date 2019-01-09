@@ -23,4 +23,10 @@ defmodule BookingzWeb.Router do
   # scope "/api", BookingzWeb do
   #   pipe_through :api
   # end
+
+  scope "/api", BookingzWeb do
+    pipe_through :api
+      get "/book-loans", BookLoanapiController, :getBookLoans
+  end
+
 end
