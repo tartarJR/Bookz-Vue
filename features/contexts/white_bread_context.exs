@@ -1,6 +1,26 @@
 defmodule WhiteBreadContext do
   use WhiteBread.Context
 
+  alias Bookingz.{Repo, Book}
+
+  feature_starting_state fn  ->
+    Application.ensure_all_started(:hound)
+    %{}
+  end
+
+  scenario_starting_state fn _state ->
+    Hound.start_session
+    Ecto.Adapters.SQL.Sandbox.checkout(Repo)
+    Ecto.Adapters.SQL.Sandbox.mode(Repo, {:shared, self()})
+    %{}
+  end
+
+  scenario_finalize fn _status, _state ->
+    Ecto.Adapters.SQL.Sandbox.checkin(Repo)
+    Hound.end_session
+    nil
+  end
+
   given_ ~r/^the following books are in library$/, fn state ->
     {:ok, state}
   end
