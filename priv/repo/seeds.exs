@@ -12,19 +12,22 @@
 
 alias Bookingz.{Repo, Book}
 [
-  %{title: "Book 1", code: "A", startdate: "2019-01-10", duedate: "2019-01-17", timeextended: 3},
-  %{title: "Book 2", code: "C", startdate: "2019-12-12", duedate: "2019-01-03", timeextended: 1},
-  %{title: "Book 3", code: "C", startdate: "2019-08-07", duedate: "2017-08-21", timeextended: 2},
-  %{title: "Book 4", code: "B", startdate: "2019-06-03", duedate: "2017-06-24", timeextended: 4},
-  %{title: "Book 5", code: "A", startdate: "2019-06-22", duedate: "2019-06-25", timeextended: 0}
+  %{title: "Book 1", code: "A", start_date: "2019-01-10", due_date: "2019-01-17", num_of_extensions: 0},
+  %{title: "Book 2", code: "A", start_date: "2018-12-19", due_date: "2018-01-16", num_of_extensions: 4},
+  %{title: "Book 3", code: "A", start_date: "2018-08-07", due_date: "2018-08-21", num_of_extensions: 1},
+  %{title: "Book 4", code: "C", start_date: "2018-06-03", due_date: "2018-06-24", num_of_extensions: 0},
+  %{title: "Book 5", code: "C", start_date: "2018-05-12", due_date: "2018-06-03", num_of_extensions: 0},
+  %{title: "Book 6", code: "C", start_date: "2018-05-15", due_date: "2018-06-05", num_of_extensions: 0},
+  %{title: "Book 7", code: "C", start_date: "2019-01-15", due_date: "2019-01-25", num_of_extensions: 3}
  ]
  |> Enum.each(
-      fn item -> Repo.insert!(Book.changeset(%Book{},
-        %{ title: item.title,
-          code: item.code,
-          start_date: Date.from_iso8601!(item.startdate),
-          due_date: Date.from_iso8601!(item.duedate),
-          num_of_extensions: item.timeextended
+      fn book -> Repo.insert!(Book.changeset(%Book{},
+        %{
+            title: book.title,
+            code: book.code,
+            start_date: Date.from_iso8601!(book.start_date),
+            due_date: Date.from_iso8601!(book.due_date),
+            num_of_extensions: book.num_of_extensions
         }))
       end
     )
