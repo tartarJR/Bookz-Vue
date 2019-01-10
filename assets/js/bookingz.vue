@@ -87,20 +87,30 @@
             getBookLoans: function(shouldDisplayAllBooks) {
             
                 axios.post("/api/book-loans", { should_show_all_books: shouldDisplayAllBooks })
-                    .then(response => {
+                        .then(response => {
 
-                      this.books = response.data.books
-                      
-                    }).catch(error => {
+                        this.books = response.data.books
                         
-                        console.log(error);
+                        }).catch(error => {
+                            
+                            console.log(error);
 
-                    });
+                        });
 
             },
 
             extendBookLoan: function(bookId) {
 
+                axios.post("/api/book-loans/extend", { book_id: bookId })
+                        .then(response => {
+
+                              this.responseMessage = response.data.response_message
+
+                          }).catch(error => {
+
+                              console.log(error);
+
+                          });
 
             },
 
