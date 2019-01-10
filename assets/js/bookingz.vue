@@ -39,7 +39,7 @@
                 <td> {{ book.num_of_extensions }} </td>
 
                 <td>
-                    <a :id="i + 1" v-if="book.should_show_action" v-on:click="update(book.id)">Extend Loan</a>
+                    <a :id="i + 1" v-if="book.should_show_action" v-on:click="extendBookLoan(book.id)">Extend Loan</a>
                     <label v-else>Loan Expired</label>
                 </td>
 
@@ -50,7 +50,7 @@
     </table>
 
     Display only ongoing book loans
-    <input type="checkbox" id="all" v-model="shouldDisplayAllBooks" v-on:click="reset" />
+    <input type="checkbox" id="all" v-model="shouldDisplayAllBooks" v-on:click="switchBookDisplay" />
 
 </div>
 
@@ -99,12 +99,12 @@
 
             },
 
-            update: function(id) {
+            extendBookLoan: function(bookId) {
 
 
             },
 
-            reset: function() {
+            switchBookDisplay: function() {
 
                 this.getBookLoans(this.shouldDisplayAllBooks)
 
