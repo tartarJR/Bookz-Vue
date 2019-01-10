@@ -106,6 +106,10 @@
 
                               this.responseMessage = response.data.response_message
 
+                          }).then(response => {
+
+                              this.getBookLoans(false)
+
                           }).catch(error => {
 
                               console.log(error);
