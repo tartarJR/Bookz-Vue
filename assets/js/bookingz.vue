@@ -50,7 +50,7 @@
     </table>
 
     Display only ongoing book loans
-    <input type="checkbox" id="all" v-model="shouldShowAllBooks" v-on:click="reset" />
+    <input type="checkbox" id="all" v-model="shouldDisplayAllBooks" v-on:click="reset" />
 
 </div>
 
@@ -66,7 +66,7 @@
 
             return {
             
-                shouldShowAllBooks: true,
+                shouldDisplayAllBooks: true,
 
                 books: [],
 
@@ -76,11 +76,17 @@
 
         },
 
+        mounted() {
+        
+            this.getBookLoans(false)
+
+        },
+
         methods: {
         
-            getBookLoans: function(shouldShowAllBooks) {
+            getBookLoans: function(shouldDisplayAllBooks) {
             
-                axios.post("/api/book-loans", { should_show_all_books: shouldShowAllBooks })
+                axios.post("/api/book-loans", { should_show_all_books: shouldDisplayAllBooks })
                     .then(response => {
 
                       this.books = response.data.books
@@ -100,16 +106,10 @@
 
             reset: function() {
 
-                this.getBookLoans(this.shouldShowAllBooks)
+                this.getBookLoans(this.shouldDisplayAllBooks)
 
             }
         
-        },
-
-        mounted() {
-        
-            this.getBookLoans(false)
-
         }
     }
 
