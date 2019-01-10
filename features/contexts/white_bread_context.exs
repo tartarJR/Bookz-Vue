@@ -21,24 +21,24 @@ defmodule WhiteBreadContext do
     nil
   end
 
-  given_ ~r/^the following books are in library$/, fn state ->
+  given_ ~r/^the following books in the library$/, fn state ->
     {:ok, state}
   end
 
-  and_ ~r/^I want to extend the time of "(?<argument_one>[^"]+)" book in my borrowing list$/,
+  and_ ~r/^I want to extend the loan period of "(?<argument_one>[^"]+)" book from my borrowed books$/,
   fn state, %{argument_one: _argument_one} ->
     {:ok, state}
   end
 
-  when_ ~r/^I extend it$/, fn state ->
+  when_ ~r/^I extend the loan period for this book$/, fn state ->
     {:ok, state}
   end
 
-  then_ ~r/^I should receive a rejected message for unsuccesfull operation$/, fn state ->
+  then_ ~r/^I should get an accepted message for succesfull loan$/, fn state ->
     {:ok, state}
   end
 
-  then_ ~r/^I should receive a accepted message for succesfull operation$/, fn state ->
+  then_ ~r/^I should get a rejected message for succesfull loan$/, fn state ->
     {:ok, state}
   end
 
