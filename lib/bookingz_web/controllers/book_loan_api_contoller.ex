@@ -3,7 +3,7 @@ defmodule BookingzWeb.BookLoanApiController do
 
   alias Bookingz.{Repo, Book}
 
-  def getBookLoans(conn, %{"should_show_all_books" => should_show_all_books }) do
+  def getBookLoans(conn, %{ "should_show_all_books" => should_show_all_books }) do
 
     books = Repo.all(Book)
     books = books
@@ -40,6 +40,12 @@ defmodule BookingzWeb.BookLoanApiController do
       |> put_status(200)
       |> json(%{ books: filtered_books })
     end
+
+  end
+
+  def extendBookLoan(conn, %{ "book_id" => book_id })do
+
+
 
   end
 
