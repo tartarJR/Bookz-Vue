@@ -39,19 +39,6 @@ erl_crash.dump
 /installer/doc
 /installer/deps
 
-### Vue ###
-# gitignore template for Vue.js projects
-#
-# Recommended template: Node.gitignore
 
-# TODO: where does this rule come from?
-docs/_book
-
-# TODO: where does this rule come from?
-test/
-
-### Vuejs ###
-node_modules
-.DS_Store
 
 # End of https://www.gitignore.io/api/vue,vuejs,elixir,phoenix
