@@ -45,7 +45,27 @@ defmodule BookingzWeb.BookLoanApiController do
 
   def extendBookLoan(conn, %{ "book_id" => book_id })do
 
+    book = Repo.get(Book, book_id)
 
+    extension_days = cond do
+                      book.code == "A" ->  7
+                      book.code == "B" ->  14
+                      book.code == "C" ->  21
+                     end
+
+    if book.num_of_extensions != 4 do
+
+      due_date = Date.add(book.due_date, extension_days)
+      Repo.update(Book.changeset(book,%{num_of_extensions: book.num_of_extensions + 1, due_date: due_date }))
+
+      conn
+      |> put_status(200)
+      |> json(%{ response_message: "Book loan extension has been accepted" })
+    else
+      conn
+      |> put_status(200)
+      |> json(%{ response_message: "Book loan extension has been rejected" })
+    end
 
   end
 
