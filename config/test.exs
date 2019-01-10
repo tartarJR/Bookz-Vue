@@ -18,4 +18,4 @@ config :bookingz, Bookingz.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
   config :hound, driver: "chrome_driver"
-  config :rentit, sql_sandbox: true
+  config :bookingz, sql_sandbox: true
