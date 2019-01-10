@@ -39,7 +39,7 @@
                 <td> {{ book.num_of_extensions }} </td>
 
                 <td>
-                    <a :id="i + 1" v-if="book.should_show_action" v-on:click="extendBookLoan(book.id)">Extend Loan</a>
+                    <button class="btn btn-primary" v-if="book.should_show_action" :id="i + 1" v-on:click="extendBookLoan(book.id)">Extend Loan</button>
                     <label v-else>Loan Expired</label>
                 </td>
 
@@ -105,10 +105,6 @@
                         .then(response => {
 
                               this.responseMessage = response.data.response_message
-
-                          }).then(response => {
-
-                              this.getBookLoans(false)
 
                           }).catch(error => {
 
